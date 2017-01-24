@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>DifferentOne</name>
+    <events>
+        <include>CODESHEET</include>
+        <include>CODE Array Object Names</include>
+        <variable comment="This is the X for the Function" constant="0" name="varAnimationFrameForTheArraySpriteToClickX" sid="5446716747266002" static="0" type="number">0</variable>
+        <variable comment="This will get passed as the Y in the Function so we can get the array position of the clicked object" constant="0" name="varAnimationNumberForTheArraySpritetoClickY" sid="967684224999574" static="0" type="number">0</variable>
+        <variable constant="0" name="SetAnimation" sid="7756120661902661" static="0" type="text">animation02</variable>
+        <variable constant="0" name="GoodShape" sid="6233469654662724" static="0" type="number">0</variable>
+        <variable constant="0" name="GoodSprite" sid="1098635837927455" static="0" type="number">0</variable>
+        <variable constant="0" name="WrongShape" sid="8708150727256051" static="0" type="number">0</variable>
+        <event-block sid="5908816144771785">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3080168947317658" type="System" />
+            </conditions>
+            <actions>
+                <action id="2" name="Set at X" sid="6819253992502614" type="arrayRandomAnimation">
+                    <param id="0" name="X">0</param>
+                    <param id="1" name="Value">&quot;animation02&quot;</param>
+                </action>
+                <action id="2" name="Set at X" sid="9748259666954901" type="arrayRandomAnimation">
+                    <param id="0" name="X">1</param>
+                    <param id="1" name="Value">&quot;animation03&quot;</param>
+                </action>
+                <action id="2" name="Set at X" sid="1428382110481656" type="arrayRandomAnimation">
+                    <param id="0" name="X">2</param>
+                    <param id="1" name="Value">&quot;animation04&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="1944373237278159" type="System">
+                    <param id="0" name="Variable">varAnimationFrameForTheArraySpriteToClickX</param>
+                    <param id="1" name="Value">int(random(SpriteToClick.AnimationFrameCount))</param>
+                </action>
+                <action id="-9" name="Set value" sid="8750903540609638" type="System">
+                    <param id="0" name="Variable">varAnimationNumberForTheArraySpritetoClickY</param>
+                    <param id="1" name="Value">int(random(0,2.9))</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="9136654030602989" title="SetShapes">
+            <sub-events>
+                <event-block sid="2069400362902908">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="7824963803417443" type="System">
+                            <param id="0" name="Variable">SetAnimation</param>
+                            <param id="1" name="Value">arrayRandomAnimation.At(varAnimationNumberForTheArraySpritetoClickY)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3031739162991558" type="System">
+                            <param id="0" name="Variable">GoodShape</param>
+                            <param id="1" name="Value">varAnimationFrameForTheArraySpriteToClickX</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="1636041845499143" type="System">
+                            <param id="0" name="Variable">GoodSprite</param>
+                            <param id="1" name="Value">int(random(4))</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3250684068179626" type="System">
+                            <param id="0" name="Variable">WrongShape</param>
+                            <param id="1" name="Value">GoodShape</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="5316711184383878" type="SpriteToClick">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2249098458863625">
+                    <conditions>
+                        <condition id="-23" name="While" sid="8328572274122992" type="System" />
+                        <condition id="-14" name="Compare variable" sid="5044549364197123" type="System">
+                            <param id="0" name="Variable">WrongShape</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">GoodShape</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9498826713613269" type="System">
+                            <param id="0" name="Variable">WrongShape</param>
+                            <param id="1" name="Value">int(random(SpriteToClick.AnimationFrameCount))</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9735943801323692">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="9298559670398913" type="System">
+                            <param id="0" name="Object">SpriteToClick</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="7122739712655761">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3011892805507385" type="SpriteToClick">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">GoodSprite</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="9212539342405566" type="SpriteToClick">
+                                    <param id="0" name="Animation">SetAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="6440896561902217" type="SpriteToClick">
+                                    <param id="0" name="Frame number">WrongShape</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3240653854659894">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9875966714479519" type="SpriteToClick">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">GoodSprite</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="4218121942157053" type="SpriteToClick">
+                                    <param id="0" name="Animation">SetAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="235154497392062" type="spriteToClickHint">
+                                    <param id="0" name="Animation">SetAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="5738675455049518" type="SpriteToClick">
+                                    <param id="0" name="Frame number">GoodShape</param>
+                                </action>
+                                <action id="5" name="Set frame" sid="1674222898360312" type="spriteToClickHint">
+                                    <param id="0" name="Frame number">GoodShape</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="3339743463209113">
+                    <conditions />
+                    <actions>
+                        <action id="-12" name="Set group active" sid="4345663328822891" type="System">
+                            <param id="0" name="Group name">&quot;SetShapes&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="3038557207378401" title="Group Create Particles over Self">
+            <sub-events>
+                <event-block sid="5657266237141154">
+                    <conditions>
+                        <condition id="3" name="On touched object" sid="448131261952681" type="Touch">
+                            <param id="0" name="Object">SpriteToClick</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" sid="9237327876097026" type="SpriteToClick" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3994765060957536" type="System">
+                            <param id="0" name="Variable">ParticleX</param>
+                            <param id="1" name="Value">SpriteToClick.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="2871365956676908" type="System">
+                            <param id="0" name="Variable">ParticleY</param>
+                            <param id="1" name="Value">SpriteToClick.Y</param>
+                        </action>
+                        <action id="0" name="Call function" sid="4997351081291366" type="Function">
+                            <param id="0" name="Name">&quot;functionCreateParticlesOnObjectCoordinatesWhenClicked&quot;</param>
+                            <param id="1" name="Parameter {n}">ParticleX{###}ParticleY</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="And pass as parameters: X,Y, object Name (taken from the Array even sheet)" sid="2219566841451847" title="Group Create Text Name over Self">
+            <sub-events>
+                <comment>Object Name on object X, Y+20</comment>
+                <event-block sid="5990897901144492">
+                    <conditions>
+                        <condition id="3" name="On touched object" sid="5650981475456424" type="Touch">
+                            <param id="0" name="Object">SpriteToClick</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" sid="9675794196326876" type="SpriteToClick" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="8989213270096583" type="Function">
+                            <param id="0" name="Name">&quot;functionCreateNameOverObjectCoordinatesWhenClicked&quot;</param>
+                            <param id="1" name="Parameter {n}">SpriteToClick.X{###}SpriteToClick.Y{###}ArraySpriteToClickNames.At(SpriteToClick.AnimationFrame, varAnimationNumberForTheArraySpritetoClickY){###}ArraySpriteToClickNames.UID</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-group description="this should work for debugging." inactive="1" sid="5367522561487589" title="debug">
+                            <sub-events>
+                                <event-block sid="8522062859123402">
+                                    <conditions />
+                                    <actions>
+                                        <action disabled="1" id="-9" name="Destroy" sid="3842650847738519" type="debug" />
+                                        <action disabled="1" id="0" name="Call function" sid="1838664324716429" type="Function">
+                                            <param id="0" name="Name">&quot;functionCreateNameOverObjectCoordinatesWhenClicked&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-group>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="1700484774122113" title="Group Try">
+            <sub-events>
+                <event-block sid="3231286598173922">
+                    <conditions>
+                        <condition id="3" name="On touched object" sid="8322089154949124" type="Touch">
+                            <param id="0" name="Object">SpriteToClick</param>
+                        </condition>
+                        <condition id="-9" name="Is visible" sid="5987545973171168" type="SpriteToClick" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="194291554445696">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3436742450650485" type="SpriteToClick">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">GoodSprite</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="1235380084876036" type="SpriteToClick">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5497069303394599">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9486586612977721" type="SpriteToClick">
+                                    <param id="0" name="Instance variable">ID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">GoodSprite</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="4797740333503061" type="Function">
+                                    <param id="0" name="Name">&quot;functionEndGameAndContinuePlaying&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="9566421307025763" type="SpriteToClick">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="4503249314326321" title="Group create Text Name over SpritePathHomeHint on click">
+            <sub-events>
+                <comment>Object Name on object X, Y+20</comment>
+                <event-block sid="9363087103577169">
+                    <conditions>
+                        <condition id="3" name="On touched object" sid="3042619430249713" type="Touch">
+                            <param id="0" name="Object">spriteToClickHint</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="8203668190717892" type="Function">
+                            <param id="0" name="Name">&quot;functionCreateNameOverObjectCoordinatesWhenClicked&quot;</param>
+                            <param id="1" name="Parameter {n}">SpriteToClickHint.X{###}SpriteToClickHint.Y{###}ArraySpriteToClickNames.At(SpriteToClickHint.AnimationFrame, varAnimationNumberForTheArraySpritetoClickY){###}ArraySpriteToClickNames.UID</param>
+                        </action>
+                        <action disabled="1" id="0" name="Call function" sid="3309357331918203" type="Function">
+                            <param id="0" name="Name">&quot;functionCorrectFontTracking&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action disabled="1" id="0" name="Set text" sid="8922976011338963" type="debug">
+                            <param id="0" name="Text">ArraySpriteToClickNames.CurValue</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="8812587562736994">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="6668884977735885" type="System">
+                    <param id="0" name="Variable">SetAnimation</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;animation02&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="3909052426726341" type="SpriteFont_GrilledCheeseBTNToasted_24_Left638_41x46">
+                    <param id="0" name="Text">&quot;Fruits are good&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6418434623206841">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8823739129830276" type="System">
+                    <param id="0" name="Variable">SetAnimation</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;animation03&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5248348178252843" type="SpriteFont_GrilledCheeseBTNToasted_24_Left638_41x46">
+                    <param id="0" name="Text">&quot;Vegetables are tasty&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2078820609045488">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="556884351856284" type="System">
+                    <param id="0" name="Variable">SetAnimation</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;animation04&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="2494503233108633" type="SpriteFont_GrilledCheeseBTNToasted_24_Left638_41x46">
+                    <param id="0" name="Text">&quot;Breakfast, yummy&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
